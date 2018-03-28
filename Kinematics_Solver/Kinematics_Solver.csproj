@@ -58,6 +58,12 @@
     <Compile Include="LocationTime.Designer.cs">
       <DependentUpon>LocationTime.cs</DependentUpon>
     </Compile>
+    <Compile Include="VelocityTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VelocityTime.Designer.cs">
+      <DependentUpon>VelocityTime.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VelocitySquared.cs">
@@ -65,12 +71,6 @@
     </Compile>
     <Compile Include="VelocitySquared.Designer.cs">
       <DependentUpon>VelocitySquared.cs</DependentUpon>
-    </Compile>
-    <Compile Include="VelocityTime.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="VelocityTime.Designer.cs">
-      <DependentUpon>VelocityTime.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="EqnSelector.resx">
       <DependentUpon>EqnSelector.cs</DependentUpon>
@@ -84,6 +84,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="LocationTime.resx">
+      <DependentUpon>LocationTime.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -8,21 +8,6 @@ namespace Kinematics_Solver
 {
     class EquationData
     {
-        bool conview = false;
-        bool formview = true;
-        public void SetConView(bool val)
-        {
-            if (val)
-            {
-                conview = true;
-                formview = false;
-            }
-            else
-            {
-                conview = false;
-                formview = true;
-            }
-        }
         public double t; // Time
         public double x; // Position
         public double a; // Acceleration
@@ -34,6 +19,7 @@ namespace Kinematics_Solver
         double deltaT;
         double t1;
         double t2;
+        public string result;
 
         enum MsgType
         {
@@ -43,38 +29,44 @@ namespace Kinematics_Solver
             vel,
             init_time,
             init_pos,
-            init_vel
+            init_vel,
+            error
         }
 
         void DispMsg(MsgType msgType)
         {
-            if (conview)
-            {
                 switch (msgType)
                 {
                     case MsgType.time:
-                        Console.WriteLine("\nTime is {1} s", t.ToString());
+                        result = String.Format("Time is {0} s", t.ToString());
                         break;
                     case MsgType.pos:
-                        Console.WriteLine("\nPosition is at {1} m", x.ToString());
+                        result = String.Format("Position is at {0} m", x.ToString());
                         break;
                     case MsgType.acc:
-                        Console.WriteLine("\nAcceleration is {1} m/s^2", a.ToString());
+                        result = String.Format("Acceleration is {0} m/s^2", a.ToString());
                         break;
                     case MsgType.vel:
-                        Console.WriteLine("\nVelocity is {1} m/s", v.ToString());
+                        result = String.Format("Velocity is {0} m/s", v.ToString());
                         break;
                     case MsgType.init_time:
-                        Console.WriteLine("\nInitial Time is {1} s", t0.ToString());
+                        result = String.Format("Initial Time is {0} s", t0.ToString());
                         break;
                     case MsgType.init_pos:
-                        Console.WriteLine("\nInitial Position is at {1) m", x0.ToString());
+                        result = String.Format("Initial Position is at {0) m", x0.ToString());
                         break;
                     case MsgType.init_vel:
-                        Console.WriteLine("\nInitial Velocity is {1} m/s", v0.ToString());
+                        result = String.Format("Initial Velocity is {0} m/s", v0.ToString());
+                        break;
+                    case MsgType.error:
+                        result = "More than one undefined variable";
                         break;
                 }
-            }
+        } //DispMsg(MsgType.error);
+
+        void DispMsg(string msg)
+        {
+            result = msg;
         }
 
         void Delta_x(double x1, double x0)
@@ -105,7 +97,7 @@ namespace Kinematics_Solver
               //check if other vars are empty
                 if (IsNAN(a) || IsNAN(t))
                 {
-                    //error code here
+                    DispMsg(MsgType.error);
                     return false;
                 }
                 //assign default values
@@ -124,7 +116,7 @@ namespace Kinematics_Solver
                 //check if other vars are empty
                 if (IsNAN(a) || IsNAN(t) || IsNAN(v))
                 {
-                    //error code here
+                    DispMsg(MsgType.error);
                     return false;
                 }
                 if (IsNAN(t0)) t0 = 0.0;
@@ -140,7 +132,7 @@ namespace Kinematics_Solver
                 //check if other vars are empty
                 if (IsNAN(v) || IsNAN(t))
                 {
-                    //error code here
+                    DispMsg(MsgType.error);
                     return false;
                 }
                 if (IsNAN(t0)) t0 = 0.0;
@@ -158,7 +150,7 @@ namespace Kinematics_Solver
             {
                 if(IsNAN(v) || IsNAN(a))
                 {
-                    //error code here
+                    DispMsg(MsgType.error);
                     return false;
                 }
                 if (IsNAN(t0)) t0 = 0.0;
@@ -175,7 +167,7 @@ namespace Kinematics_Solver
             {
                 if (IsNAN(v) || IsNAN(a) || IsNAN(t))
                 {
-                    //error code here
+                    DispMsg(MsgType.error);
                     return false;
                 }
                 if (IsNAN(v0)) v0 = 0.0;
@@ -197,7 +189,7 @@ namespace Kinematics_Solver
             {
                 if (IsNAN(a) || IsNAN(x))
                 {
-                    //insert error code here
+                    DispMsg(MsgType.error);
                     return false;
                 }
                 if (IsNAN(v0)) v0 = 0.0;
@@ -214,7 +206,7 @@ namespace Kinematics_Solver
             {
                 if (IsNAN(v) || (IsNAN(a)) || (IsNAN(x)))
                 {
-                    //insert error code here
+                    DispMsg(MsgType.error);
                     return false;
                 }
                 if (IsNAN(x0)) x0 = 0.0;
@@ -230,7 +222,7 @@ namespace Kinematics_Solver
             {
                 if (IsNAN(v) || (IsNAN(x)))
                 {
-                    //insert error code here
+                    DispMsg(MsgType.error);
                     return false;
                 }
                 if (IsNAN(x0)) x0 = 0.0;
@@ -247,7 +239,7 @@ namespace Kinematics_Solver
             {
                 if (IsNAN(v) || (IsNAN(a)))
                 {
-                    //insert error code here
+                    DispMsg(MsgType.error);
                     return false;
                 }
                 if (IsNAN(x0)) x0 = 0.0;
@@ -264,7 +256,7 @@ namespace Kinematics_Solver
             {
                 if (IsNAN(v) || (IsNAN(a)) || IsNAN(x))
                 {
-                    //insert error code here
+                    DispMsg(MsgType.error);
                     return false;
                 }
                 if (IsNAN(v0)) v0 = 0.0;
@@ -286,7 +278,7 @@ namespace Kinematics_Solver
             {
                 if (IsNAN(a) || IsNAN(t))
                 {
-                    //error code here
+                    DispMsg(MsgType.error);
                     return false;
                 }
                 if (IsNAN(x0)) x0 = 0.0;
@@ -304,7 +296,7 @@ namespace Kinematics_Solver
             {
                 if (IsNAN(a) || IsNAN(t) || IsNAN(x))
                 {
-                    //error code here
+                    DispMsg(MsgType.error);
                     return false;
                 }
                 if (IsNAN(t0)) t0 = 0.0;
@@ -323,7 +315,7 @@ namespace Kinematics_Solver
             {
                 if(IsNAN(a) || IsNAN(t) || IsNAN(x))
                 {
-                    //error code here
+                    DispMsg(MsgType.error);
                     return false;
                 }
                 if (IsNAN(t0)) t0 = 0.0;
@@ -342,7 +334,7 @@ namespace Kinematics_Solver
             {
                 if(IsNAN(x) || IsNAN(t))
                 {
-                    //error code here
+                    DispMsg(MsgType.error);
                     return false;
                 }
                 if (IsNAN(v0)) v0 = 0.0;
@@ -362,7 +354,7 @@ namespace Kinematics_Solver
             {
                 if(IsNAN(x) || IsNAN(a))
                 {
-                    //error code here
+                    DispMsg(MsgType.error);
                     return false;
                 }
                 if (IsNAN(v0)) v0 = 0.0;
@@ -380,10 +372,10 @@ namespace Kinematics_Solver
                 else // a != 0 means a squared t 
                 {
                     //passing vars to a dedicated function
-                    bool result = Quadratic(a / 2, v0, x0);
-                    if(!result)
+                    bool qresult = Quadratic(a / 2, v0, x0 - x);
+                    if(!qresult)
                     {
-                        //error has occured
+                        //called function should input error code
                         return false;
                     }
 
@@ -401,35 +393,24 @@ namespace Kinematics_Solver
             //if a is 0 - sanity check in case of odd thing happens at the calling function
             if (a == 0.0)
             {
-                if (conview)
-                {
-                    Console.WriteLine("\nThe squared variable cannot be 0!"); //linear function
-                    return false;
-                }
-                //manipulate textfield in form
+                DispMsg("The squared variable cannot be 0!"); //linear function
+                return false;
             }
             double divider = 2 * a;
             double delta = Math.Sqrt(b * b - 4 * a * c);
             if (IsNAN(delta))
             {
-                if(conview)
-                {
-                    Console.WriteLine("\nNo Results"); // "Hovering" Function
-                    return false;
-                }
-                //manipulate textfield in form
-
+                DispMsg("No Results"); // "Hovering" Function
                 return false;
             }
             t1 = (-b + delta) / divider;
             t2 = (-b - delta) / divider;
-            if (conview && t0 == 0.0)
-                Console.WriteLine("\n T1 = {1} s, T2 = {2} s", t1.ToString(), t2.ToString());
-            else if (conview)
-                Console.WriteLine("\n T1 = {1} s, T2 = {2} s", (t1+t0).ToString(), (t2+t0).ToString());
+            if (t0 == 0.0)
+                DispMsg(String.Format("T1 = {0} s, T2 = {1} s", t1.ToString(), t2.ToString()));
+            else
+                DispMsg(String.Format("T1 = {0} s, T2 = {1} s", (t1+t0).ToString(), (t2+t0).ToString()));
             return true;
-            //manipulate textfield in form
-            //return true;
+           
         }
     }
 }
