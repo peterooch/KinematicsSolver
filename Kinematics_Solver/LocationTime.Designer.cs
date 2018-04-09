@@ -50,6 +50,8 @@
             this.t = new System.Windows.Forms.TextBox();
             this.t0 = new System.Windows.Forms.TextBox();
             this.a = new System.Windows.Forms.TextBox();
+            this.resStripLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.resStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // retBtn
@@ -60,6 +62,7 @@
             this.retBtn.TabIndex = 0;
             this.retBtn.Text = "<-Return";
             this.retBtn.UseVisualStyleBackColor = true;
+            this.retBtn.Click += new System.EventHandler(this.retBtn_Click);
             // 
             // CalcBtn
             // 
@@ -73,6 +76,8 @@
             // 
             // resStrip
             // 
+            this.resStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.resStripLabel});
             this.resStrip.Location = new System.Drawing.Point(0, 199);
             this.resStrip.Name = "resStrip";
             this.resStrip.Size = new System.Drawing.Size(334, 22);
@@ -260,7 +265,13 @@
             this.a.Size = new System.Drawing.Size(30, 27);
             this.a.TabIndex = 21;
             // 
-            // VelocityTime
+            // resStripLabel
+            // 
+            this.resStripLabel.Name = "resStripLabel";
+            this.resStripLabel.Size = new System.Drawing.Size(51, 17);
+            this.resStripLabel.Text = "Nothing";
+            // 
+            // LocationTime
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -287,8 +298,10 @@
             this.Controls.Add(this.resStrip);
             this.Controls.Add(this.CalcBtn);
             this.Controls.Add(this.retBtn);
-            this.Name = "VelocityTime";
+            this.Name = "LocationTime";
             this.Text = "VelocityTime";
+            this.resStrip.ResumeLayout(false);
+            this.resStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -318,5 +331,6 @@
         private System.Windows.Forms.TextBox t;
         private System.Windows.Forms.TextBox t0;
         private System.Windows.Forms.TextBox a;
+        private System.Windows.Forms.ToolStripStatusLabel resStripLabel;
     }
 }

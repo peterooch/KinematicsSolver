@@ -41,6 +41,7 @@
             this.LocationTimeBtn.TabIndex = 0;
             this.LocationTimeBtn.Text = "X(t) = X0 + V0(T-T0)+A/2*(T-T0)^2";
             this.LocationTimeBtn.UseVisualStyleBackColor = true;
+            this.LocationTimeBtn.Click += new System.EventHandler(this.LocationTimeBtn_Click);
             // 
             // VelocitySquaredBtn
             // 
@@ -50,6 +51,7 @@
             this.VelocitySquaredBtn.TabIndex = 1;
             this.VelocitySquaredBtn.Text = "V^2 = V0^2 +2*A*(X-X0)";
             this.VelocitySquaredBtn.UseVisualStyleBackColor = true;
+            this.VelocitySquaredBtn.Click += new System.EventHandler(this.VelocitySquaredBtn_Click);
             // 
             // VelocityTimeBtn
             // 
@@ -59,6 +61,7 @@
             this.VelocityTimeBtn.TabIndex = 2;
             this.VelocityTimeBtn.Text = "V(t) = V +A*(T-T0)";
             this.VelocityTimeBtn.UseVisualStyleBackColor = true;
+            this.VelocityTimeBtn.Click += new System.EventHandler(this.VelocityTimeBtn_Click);
             // 
             // EqnSelector
             // 

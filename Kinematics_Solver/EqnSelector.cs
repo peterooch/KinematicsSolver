@@ -21,5 +21,31 @@ namespace Kinematics_Solver
         {
 
         }
+
+        private void LocationTimeBtn_Click(object sender, EventArgs e)
+        {
+            LocationTime locationTime = new LocationTime();
+            locationTime.Show();
+            Close(); 
+        }
+
+        private void VelocitySquaredBtn_Click(object sender, EventArgs e)
+        {
+            VelocitySquared velocitySquared = new VelocitySquared();
+            velocitySquared.Show();
+            Close();
+        }
+
+        private void VelocityTimeBtn_Click(object sender, EventArgs e)
+        {
+            VelocityTime velocityTime = new VelocityTime();
+            velocityTime.Show();
+            Close();
+        }
+        private void EqnSelector_FormClosing(object sender, EventArgs e)
+        {
+            Application.Exit();
+            Close();
+        }
     }
 }

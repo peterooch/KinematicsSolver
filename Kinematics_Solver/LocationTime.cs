@@ -14,7 +14,7 @@ namespace Kinematics_Solver
     {
         double Conv(System.Windows.Forms.TextBox text)
         {
-            double res;
+             double res;
             try
             {
                 res = Convert.ToDouble(text);
@@ -23,7 +23,7 @@ namespace Kinematics_Solver
             {
                 res = Double.NaN;
             }
-            return res;
+                            return res;
 
         }
         public LocationTime()
@@ -41,7 +41,8 @@ namespace Kinematics_Solver
             equation.t0 = Conv(t0);
             equation.a = Conv(a);
             equation.LocationTime();
-            resStrip.Text = equation.result;
+            resStripLabel.Text = equation.result;
+            resStrip.Refresh();
 
         }
 
@@ -58,6 +59,18 @@ namespace Kinematics_Solver
         private void label5_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void retBtn_Click(object sender, EventArgs e)
+        {
+            EqnSelector eqnSelector = new EqnSelector();
+            eqnSelector.Show();
+            Close();
+        }
+        private void LocationTime_FormClosing(object sender, EventArgs e)
+        {
+            Application.Exit();
+            Close();
         }
     }
 }

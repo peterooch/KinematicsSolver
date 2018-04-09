@@ -62,27 +62,15 @@ namespace Kinematics_Solver
                         result = "More than one undefined variable";
                         break;
                 }
-        } //DispMsg(MsgType.error);
-
-        void DispMsg(string msg)
-        {
-            result = msg;
         }
 
-        void Delta_x(double x1, double x0)
-        {
-            deltaX = x1 - x0;
-        }
+        void DispMsg(string msg) => result = msg;
 
-        void Delta_t(double t1, double t0)
-        {
-            deltaT = t1 - t0;
-        }
+        void Delta_x(double x1, double x0) => deltaX = x1 - x0;
 
-        bool IsNAN(double n)
-        {
-            return Double.IsNaN(n);
-        } //NaN helper function
+        void Delta_t(double t1, double t0) => deltaT = t1 - t0;
+
+        bool IsNAN(double n) => Double.IsNaN(n); //NaN helper function
 
         //Various Equation solving functions
 
